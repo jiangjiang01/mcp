@@ -1,0 +1,27 @@
+# Git files
+.git/
+.gitignore
+
+# Build output
+dist/
+build/
+out/
+
+# Dependencies
+node_modules/
+
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Cursor config
+.cursor/mcp.json 

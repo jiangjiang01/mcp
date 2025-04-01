@@ -1,0 +1,29 @@
+# Cursor specific
+.cursor
+.cursor/
+.cursor/**/*
+.cursor/mcp.json
+
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build output
+dist/
+build/
+out/ 
