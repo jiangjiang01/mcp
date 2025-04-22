@@ -22,6 +22,3 @@ node_modules/
 .vscode/
 *.swp
 *.swo
-
-# Cursor config
-.cursor/mcp.json 

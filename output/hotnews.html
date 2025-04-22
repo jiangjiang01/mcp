@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时热搜聚合 - 热点聚合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .update-time {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .platform-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .platform-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .platform-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .platform-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .platform-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .hot-list {
+            list-style: none;
+        }
+
+        .hot-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s;
+        }
+
+        .hot-item:last-child {
+            border-bottom: none;
+        }
+
+        .hot-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .hot-link {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hot-title {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .hot-heat {
+            font-size: 0.85em;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        .index {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            background: #f0f0f0;
+            border-radius: 4px;
+            margin-right: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .index-top {
+            background: #ff4757;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .platform-container {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>实时热搜聚合</h1>
+            <div class="update-time">最后更新时间：2025-04-22 16:36</div>
+        </header>
+
+        <div class="platform-container">
+            <!-- 知乎热榜 -->
+            <section class="platform-section">
+                <div class="platform-header">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%230084FF' d='M12.2 4c4.1 0 7.4 3.3 7.4 7.4v1.4c0 4.1-3.3 7.4-7.4 7.4H5.6V4h6.6zm0 2H7.6v12.2h4.6c3 0 5.4-2.4 5.4-5.4v-1.4c0-3-2.4-5.4-5.4-5.4z'/></svg>" class="platform-icon" alt="知乎图标">
+                    <h2 class="platform-name">知乎热榜</h2>
+                </div>
+                <ul class="hot-list">
+                    <li class="hot-item">
+                        <a href="https://www.zhihu.com/question/14778037788" class="hot-link">
+                            <span class="index index-top">1</span>
+                            <span class="hot-title">我酒精过敏，部门聚餐是全场唯一没喝酒的，领导多次 cue 我质疑我的理由，该怎么办？</span>
+                            <span class="hot-heat">483万热度</span>
+                        </a>
+                    </li>
+                    <li class="hot-item">
+                        <a href="https://www.zhihu.com/question/1897956893286199447" class="hot-link">
+                            <span class="index index-top">2</span>
+                            <span class="hot-title">24-25 赛季 NBA 季后赛快船 105:102 掘金，如何评价这场比赛？</span>
+                            <span class="hot-heat">445万热度</span>
+                        </a>
+                    </li>
+                    <li class="hot-item">
+                        <a href="https://www.zhihu.com/question/1897396503166838751" class="hot-link">
+                            <span class="index index-top">3</span>
+                            <span class="hot-title">消息称宋涛 100 万投资米哈游，投资回报超过 2.5 万倍，如何评价宋涛这笔投资？</span>
+                            <span class="hot-heat">443万热度</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 微博热搜 -->
+            <section class="platform-section">
+                <div class="platform-header">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23E6162D' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm5.5-15.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm-10 0c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z'/></svg>" class="platform-icon" alt="微博图标">
+                    <h2 class="platform-name">微博热搜</h2>
+                </div>
+                <ul class="hot-list">
+                    <li class="hot-item">
+                        <a href="https://s.weibo.com/weibo?q=%23聋哑女生因长相太完美被质疑%23" class="hot-link">
+                            <span class="index index-top">1</span>
+                            <span class="hot-title">聋哑女生因长相太完美被质疑</span>
+                            <span class="hot-heat">186.2万</span>
+                        </a>
+                    </li>
+                    <li class="hot-item">
+                        <a href="https://s.weibo.com/weibo?q=%23李刚被逮捕%23" class="hot-link">
+                            <span class="index index-top">2</span>
+                            <span class="hot-title">李刚被逮捕</span>
+                            <span class="hot-heat">118.2万</span>
+                        </a>
+                    </li>
+                    <li class="hot-item">
+                        <a href="https://s.weibo.com/weibo?q=%23超高清走入千家万户%23" class="hot-link">
+                            <span class="index index-top">3</span>
+                            <span class="hot-title">超高清走入千家万户</span>
+                            <span class="hot-heat">93.8万</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 百度热点 -->
+            <section class="platform-section">
+                <div class="platform-header">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%232932E1' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/></svg>" class="platform-icon" alt="百度图标">
+                    <h2 class="platform-name">百度热点</h2>
+                </div>
+                <ul class="hot-list">
+                    <li class="hot-item">
+                        <a href="https://www.baidu.com/s?ie=UTF-8&wd=可口可乐笑了百事可乐哭了" class="hot-link">
+                            <span class="index index-top">1</span>
+                            <span class="hot-title">可口可乐笑了百事可乐哭了</span>
+                            <span class="hot-heat">780.9万</span>
+                        </a>
+                    </li>
+                    <li class="hot-item">
+                        <a href="https://www.baidu.com/s?ie=UTF-8&wd=聋哑女生因容貌美得不真实被质疑" class="hot-link">
+                            <span class="index index-top">2</span>
+                            <span class="hot-title">聋哑女生因容貌美得不真实被质疑</span>
+                            <span class="hot-heat">771.2万</span>
+                        </a>
+                    </li>
+                    <li class="hot-item">
+                        <a href="https://www.baidu.com/s?ie=UTF-8&wd=关税战之下 绥靖从来不是选项" class="hot-link">
+                            <span class="index index-top">3</span>
+                            <span class="hot-title">关税战之下 绥靖从来不是选项</span>
+                            <span class="hot-heat">762.0万</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 抖音热点 -->
+            <section class="platform-section">
+                <div class="platform-header">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000000' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/></svg>" class="platform-icon" alt="抖音图标">
+                    <h2 class="platform-name">抖音热点</h2>
+                </div>
+                <ul class="hot-list">
+                    <li class="hot-item">
+                        <a href="https://www.douyin.com/search/李刚被逮捕" class="hot-link">
+                            <span class="index index-top">1</span>
+                            <span class="hot-title">李刚被逮捕</span>
+                            <span class="hot-heat">1219.2万</span>
+                        </a>
+                    </li>
+                    <li class="hot-item">
+                        <a href="https://www.douyin.com/search/现货黄金价格创新高" class="hot-link">
+                            <span class="index index-top">2</span>
+                            <span class="hot-title">现货黄金价格创新高</span>
+                            <span class="hot-heat">1203.9万</span>
+                        </a>
+                    </li>
+                    <li class="hot-item">
+                        <a href="https://www.douyin.com/search/在抖音重走一遍万里茶道" class="hot-link">
+                            <span class="index index-top">3</span>
+                            <span class="hot-title">在抖音重走一遍万里茶道</span>
+                            <span class="hot-heat">1177.4万</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
